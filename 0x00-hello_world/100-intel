@@ -1,0 +1,21 @@
+#!/bin/bash
+# Check if the C file name is given
+if [ -z "$CFILE" ]
+then
+    echo "Missing C file name"
+    exit 1
+fi
+
+# Check if the C file exists
+if [ ! -f "$CFILE" ]
+then
+    echo "C file not found"
+    exit 2
+fi
+
+# Get the output file name by replacing .c with .s
+OFILE="${CFILE/%.c/.s}"
+
+# Compile the C file with gcc and generate the assembly code in Intel syntax
+gcc -S -masm=intel "$CFILE" -o "$OFILE"
+
