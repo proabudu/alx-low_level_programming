@@ -1,3 +1,4 @@
+/* Include the standard input/output header file */
 #include <stdio.h>
 
 /**
