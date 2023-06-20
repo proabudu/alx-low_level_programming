@@ -1,11 +1,8 @@
-#ifndef MAIN_H
-#define MAIN_H
+#include <stdio.h>
 
-/* Prototype of the function _putchar */
-int _putchar(char c);
-
-/* Prototype of the function main */
-int main(void);
-
-#endif /* MAIN_H */
+int main(void)
+{
+    printf("_putchar\n");
+    return (0);
+}
 
