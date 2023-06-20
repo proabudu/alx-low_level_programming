@@ -12,4 +12,3 @@ return -n;
 else
 return n;
 }
-
