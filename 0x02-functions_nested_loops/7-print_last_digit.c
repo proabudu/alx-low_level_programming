@@ -1,15 +1,20 @@
-#include <iostream>
+#include "main.h"
 
-int print_last_digit(int number) {
-int lastDigit = number % 10;
-std::cout << "The last digit is: " << lastDigit << std::endl;
-return lastDigit;
-}
-int main() {
-int number;
-std::cout << "Enter a number: ";
-std::cin >> number;
-print_last_digit(number);
-return 0;
+/**
+ * print_last_digit - prints the last digit of a number
+ * @n: the number to be checked
+ * Return: the value of the last digit
+ */
+int print_last_digit(int n)
+{
+    int last;
+
+    last = n % 10;
+    if (last < 0)
+    {
+        last = -last;
+    }
+    _putchar(last + '0');
+    return (last);
 }
 
