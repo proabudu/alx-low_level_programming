@@ -1,27 +1,17 @@
-#include "main.h"
-#include <stdio.h>
+#include <iostream>
 
-/**
- * print_to_98 - prints all natural numbers from n to 98, followed by a new line
- * @n: the number to start from
- */
-void print_to_98(int n)
-{
-if (n <= 98)
-{
-for (; n < 98; n++)
-{
-printf("%d, ", n);
-}
-printf("98\n");
-}
-else
-{
-for (; n > 98; n--)
-{
-printf("%d, ", n);
-{
-printf("98\n");
-}
+void print_to_98(int n) {
+    while (n != 99) {
+        std::cout << n;
+        if (n != 98) {
+            std::cout << ", ";
+        }
+        if (n < 98) {
+            n++;
+        } else {
+            n--;
+        }
+    }
+    std::cout << std::endl;
 }
 
