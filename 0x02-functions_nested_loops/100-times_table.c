@@ -1,25 +1,41 @@
-#include <iostream>
+#include "main.h"
 
-void print_to_98(int n) {
-    while (n != 99) {
-        std::cout << n;
-        if (n != 98) {
-            std::cout << ", ";
-        }
-        if (n < 98) {
-            n++;
-        } else {
-            n--;
+/**
+ * print_times_table - prints the n times table, starting with 0
+ * @n: the times table to print
+ */
+void print_times_table(int n)
+{
+    int i;
+    int j;
+    int product;
+
+    if (n >= 0 && n <= 15)
+    {
+        for (i = 0; i <= n; i++)
+        {
+            for (j = 0; j <= n; j++)
+            {
+                product = i * j;
+                if (j == 0)
+                {
+                    printf("%d", product);
+                }
+                else if (product < 10)
+                {
+                    printf(",   %d", product);
+                }
+                else if (product < 100)
+                {
+                    printf(",  %d", product);
+                }
+                else
+                {
+                    printf(", %d", product);
+                }
+            }
+            printf("\n");
         }
     }
-    std::cout << std::endl;
-}
-
-int main() {
-    int number;
-    std::cout << "Enter a number: ";
-    std::cin >> number;
-    print_to_98(number);
-    return 0;
 }
 
