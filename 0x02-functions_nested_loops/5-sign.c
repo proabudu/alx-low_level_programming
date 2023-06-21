@@ -1,8 +1,8 @@
 #include "main.h"
+
 /**
  * print_sign - Prints the sign of a number
  * @n: The number to check
- *
  * Return: 1 if n is greater than zero and prints '+',
  *         0 if n is zero and prints '0',
  *        -1 if n is less than zero and prints '-'
@@ -22,7 +22,7 @@ return (0);
 else
 {
 _putchar('-');
-return -(1);
+return (-1);
 }
 }
 
