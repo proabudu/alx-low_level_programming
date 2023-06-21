@@ -24,4 +24,3 @@ printf("%d, ", n);
 printf("98\n");
 }
 }
-
