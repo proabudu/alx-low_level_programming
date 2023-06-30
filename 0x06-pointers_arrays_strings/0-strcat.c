@@ -1,28 +1,31 @@
-#include <stdio.h>
+#include "holberton.h"
 
+/* Prototype */
+char *_strcat(char *dest, char *src);
+/**
+ * _strcat - concatenates two strings
+ * @dest: the destination string
+ * @src: the source string
+ * Return: a pointer to the resulting string dest
+ */
 char *_strcat(char *dest, char *src)
 {
-int i = 0;
-int j = 0;
+int i = 0; /* index for dest */
+int j = 0; /* index for src */
+/* find the end of dest */
 while (dest[i] != '\0')
 {
 i++;
 }
+/* append src to dest */
 while (src[j] != '\0')
 {
 dest[i] = src[j];
 i++;
 j++;
 }
+/* add a terminating null byte */
 dest[i] = '\0';
-return (dest);
-}
-int main()
-{
-char str1[100] = "Hello";
-char str2[100] = "World";
-strcat(str1, str2);
-printf("%s\n", str1);
-return (0);
+return (dest); /* return the pointer to dest */
 }
 
