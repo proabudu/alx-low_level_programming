@@ -1,28 +1,29 @@
-#include <stdio.h>
+#include "holberton.h"
 
-char *_strncat(char *dest, char *src, int n)
+/* Prototype */
+char *_strncpy(char *dest, char *src, int n);
+/**
+ * _strncpy - copies a string
+ * @dest: the destination string
+ * @src: the source string
+ * @n: the number of bytes to copy
+ * Return: a pointer to the resulting string dest
+ */
+char *_strncpy(char *dest, char *src, int n)
 {
-int i = 0;
-int j = 0;
-while (dest[i] != '\0')
+int i = 0; /* index for src and dest */
+/* copy src to dest until n bytes or end of src */
+while (i < n && src[i] != '\0')
 {
+dest[i] = src[i];
 i++;
 }
-while (j < n && src[j] != '\0')
+/* fill the rest of dest with null bytes */
+while (i < n)
 {
-dest[i] = src[j];
-i++;
-j++;
-}
 dest[i] = '\0';
-return (dest);
+i++;
 }
-int main()
-{
-char str1[100] = "Hello";
-char str2[100] = "World";
-_strncat(str1, str2, 3);
-printf("%s\n", str1);
-return (0);
+return (dest); /* return the pointer to dest */
 }
 
