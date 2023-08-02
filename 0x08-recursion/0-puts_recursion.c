@@ -1,16 +1,14 @@
 #include "main.h"
 
-void _puts_recursion(char *s)
-{
-/* If we've reached the end of the string, print a newline and return */
-if (*s == '\0')
-/* If we cont */
-{
+void _puts_recursion(char *s) {
+if (*s == '\0') {
+// Base case: we have reached the end of the string.
 _putchar('\n');
 return;
-}
-/* Print the current character and move on to the next one */
+} else {
+// Recursive case: print the next character in the string, and then recurse.
 _putchar(*s);
 _puts_recursion(s + 1);
+}
 }
 
