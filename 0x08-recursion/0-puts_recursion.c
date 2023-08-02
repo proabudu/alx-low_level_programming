@@ -3,7 +3,7 @@
 void _puts_recursion(char *s)
 {
 /* If we've reached the end of the string, print a newline and return */
-if (*s == '\0') // follow road
+if (*s == '\0')
 {
 _putchar('\n');
 return;
