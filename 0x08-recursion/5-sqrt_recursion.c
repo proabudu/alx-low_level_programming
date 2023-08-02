@@ -8,9 +8,9 @@ return (n);
 }
 int mid = n / 2;
 if (mid * mid == n) {
-return mid;
+return (mid);
 } else if (mid * mid < n) {
-return mid;
+return (mid);
 } else {
 return _sqrt_recursion(mid - 1);
 }
