@@ -1,45 +1,44 @@
-#include "main.h"
-#include "holberton.h"
-
-/**
- * is_palindrome - checks if a string is a palindrome
- * @s: the string to check
- * Return: 1 if palindrome, 0 otherwise
- */
-
-int is_palindrome(char *s)
-{
-    int len = _strlen_recursion(s); /* get the length of the string */
-    return (check_palindrome(s, 0, len - 1)); /* call the helper function */
-}
-
-/**
- * _strlen_recursion - returns the length of a string
- * @s: the string to measure
- * Return: the length of the string
- */
-
+#include <stdio.h>
+#include <stdlib.h>
+// A function that returns the length of a string
 int _strlen_recursion(char *s)
 {
-    if (*s == '\0') /* base case: end of string */
-        return (0);
-    return (1 + _strlen_recursion(s + 1)); /* recursive call */
-}
-
-/**
- * check_palindrome - helper function to check for palindrome
- * @s: the string to check
- * @i: the index from the left
- * @j: the index from the right
- * Return: 1 if palindrome, 0 otherwise
- */
-
-int check_palindrome(char *s, int i, int j)
+// If the string is empty, return 0
+if (s[0] == '\0')
 {
-    if (i >= j) /* base case: middle or end of string */
-        return (1);
-    if (s[i] != s[j]) /* not matching characters */
-        return (0);
-    return (check_palindrome(s, i + 1, j - 1)); /* recursive call */
+return (0);
 }
-
+// Otherwise, return 1 plus the length of the rest of the string
+return (1 + _strlen_recursion(s + 1));
+}
+// A helper function that checks if a string is a palindrome
+int _is_palindrome(char *s, int start, int end)
+{
+// If the start and end indices cross, the string is a palindrome
+if (start >= end)
+{
+return (1);
+}
+// If the characters at the start and end do not match, the string is not a palindrome
+if (s[start] != s[end])
+{
+return (0);
+}
+// Otherwise, check the rest of the string
+return (_is_palindrome(s, start + 1, end - 1));
+}
+// A function that returns 1 if a string is a palindrome and 0 if not
+int is_palindrome(char *s)
+{
+int len = _strlen_recursion(s); // The length of the string
+return (_is_palindrome(s, 0, len - 1)); // Call the helper function
+}
+// A main function to test the is_palindrome function
+int main(void)
+{
+char *s = "racecar";
+int result;
+result = is_palindrome(s);
+printf("%d\n", result);
+return (0);
+}
