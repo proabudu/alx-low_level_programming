@@ -1,13 +1,17 @@
 #include "main.h"
 #include <stdlib.h>
 
-/*
-* create_array  - used to create array of char
-* size : array size
-*return : the array completed
+/**
+* create_array - Creates an array of the specified size and fills it with the
+* specified value.
+*
+* @param size The size of the array to create.
+* @param value The value to fill the array with.
+*
+* @return A pointer to the created array, or NULL on failure.
 */
-
-char *create_array(unsigned int size, char c) /* Creates an array of chars */
+int create_array(int size, int value);
+char *create_array(unsigned int size, char c)
 {
 char *array;
 unsigned int i;
