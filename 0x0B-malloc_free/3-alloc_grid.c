@@ -7,6 +7,7 @@
 /* It initializes each element of the array to 0 */
 /* It checks if width or height is 0 or negative and returns NULL if so */
 
+/* alloc_grid - Allocates a 2 dimensional array of integers.*/
 int **alloc_grid(int width, int height)
 /* alloc_grid - Allocates a 2 dimensional array of integers. */
 {
