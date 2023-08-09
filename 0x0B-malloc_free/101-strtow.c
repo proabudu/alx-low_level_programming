@@ -1,104 +1,43 @@
 #include <stdlib.h>
 
-// Function to count the number of words in a string
-int count_words(char *str) {
-    int count = 0;
-    int in_word = 0;
-
-    while (*str != '\0') {
-        if (*str == ' ') {
-            in_word = 0;
-        } else if (in_word == 0) {
-            in_word = 1;
-            count++;
-        }
-        str++;
-    }
-
-    return count;
-}
-
-// Function to split a string into words
+/*
+ * strtow - Splits a string into words.
+ *
+ * Description:
+ *   Splits a string into words, and returns an array of pointers to the words.
+ *   Each element of the array should contain a single word, null-terminated.
+ *   The last element of the returned array should be NULL.
+ *
+ * @str: The string to split.
+ *
+ * Returns: A pointer to the array of words, or NULL on failure.
+ */
 char **strtow(char *str) {
-    if (str == NULL || *str == '\0') {
-        return NULL;
+  /* Check if str is NULL or empty. */
+  if (str == NULL || str[0] == '\0') {
+    return NULL;
+  }
+
+  /* Initialize the variables. */
+  char **words = NULL;
+  int i = 0, j = 0;
+
+  /* Iterate over the string, one character at a time. */
+  while (str[i] != '\0') {
+    /* If the current character is a space, add the current word to the array. */
+    if (str[i] == ' ') {
+      words[j] = &str[i - 1];
+      j++;
     }
 
-    int num_words = count_words(str);
-    char **words = (char **)malloc((num_words + 1) * sizeof(char *));
-    if (words == NULL) {
-        return NULL;
-    }
+    /* Increment the index. */
+    i++;
+  }
 
-    int word_index = 0;
-    int word_length = 0;
-    int in_word = 0;
+  /* Add the last word to the array. */
+  words[j] = &str[i - 1];
 
-    while (*str != '\0') {
-        if (*str == ' ') {
-            if (in_word) {
-                words[word_index] = (char *)malloc((word_length + 1) * sizeof(char));
-                if (words[word_index] == NULL) {
-                    // Free memory allocated so far and return NULL on failure
-                    for (int i = 0; i < word_index; i++) {
-                        free(words[i]);
-                    }
-                    free(words);
-                    return NULL;
-                }
-                words[word_index][word_length] = '\0';
-                word_index++;
-                word_length = 0;
-                in_word = 0;
-            }
-        } else {
-            in_word = 1;
-            word_length++;
-        }
-        str++;
-    }
-
-    if (in_word) {
-        words[word_index] = (char *)malloc((word_length + 1) * sizeof(char));
-        if (words[word_index] == NULL) {
-            // Free memory allocated so far and return NULL on failure
-            for (int i = 0; i <= word_index; i++) {
-                free(words[i]);
-            }
-            free(words);
-            return NULL;
-        }
-        words[word_index][word_length] = '\0';
-        word_index++;
-    }
-
-    words[word_index] = NULL; // Mark the end of the array
-
-    return words;
-}
-
-// Function to free memory allocated for words
-void free_words(char **words) {
-    if (words != NULL) {
-        for (int i = 0; words[i] != NULL; i++) {
-            free(words[i]);
-        }
-        free(words);
-    }
-}
-
-int main() {
-    char input[] = "This is a sample string";
-    char **word_array = strtow(input);
-
-    if (word_array != NULL) {
-        for (int i = 0; word_array[i] != NULL; i++) {
-            printf("%s\n", word_array[i]);
-        }
-
-        free_words(word_array);
-    }
-
-    return 0;
+  /* Return the array of words. */
+  return words;
 }
 
