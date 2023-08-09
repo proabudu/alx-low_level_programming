@@ -7,7 +7,7 @@
 *return : the array completed
 */
 
-char *create_array(unsigned int size, char c) /* Creates an array of chars for the code. */
+char *create_array(unsigned int size, char c) /* Creates an array of chars for */
 {
 char *array;
 unsigned int i;
