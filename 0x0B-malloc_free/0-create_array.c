@@ -11,7 +11,7 @@
 * @return A pointer to the created array, or NULL on failure.
 */
 
-char *create_array(unsigned int size, char c)
+int create_array(int size, int value);
 {
 char *array;
 unsigned int i;
