@@ -1,43 +1,78 @@
 #include <stdlib.h>
+#include "main.h"
 
-/*
- * strtow - Splits a string into words.
+/**
+ * count_word - helper function to count the number of words in a string
+ * @s: string to evaluate
  *
- * Description:
- *   Splits a string into words, and returns an array of pointers to the words.
- *   Each element of the array should contain a single word, null-terminated.
- *   The last element of the returned array should be NULL.
- *
- * @str: The string to split.
- *
- * Returns: A pointer to the array of words, or NULL on failure.
+ * Return: number of words
  */
-char **strtow(char *str) {
-  /* Check if str is NULL or empty. */
-  if (str == NULL || str[0] == '\0') {
-    return NULL;
-  }
+int count_word(char *s)
+{
+	int flag, c, w;
 
-  /* Initialize the variables. */
-  char **words = NULL;
-  int i = 0, j = 0;
+	flag = 0;
+	w = 0;
 
-  /* Iterate over the string, one character at a time. */
-  while (str[i] != '\0') {
-    /* If the current character is a space, add the current word to the array. */
-    if (str[i] == ' ') {
-      words[j] = &str[i - 1];
-      j++;
-    }
+	for (c = 0; s[c] != '\0'; c++)
+	{
+		if (s[c] == ' ')
+			flag = 0;
+		else if (flag == 0)
+		{
+			flag = 1;
+			w++;
+		}
+	}
 
-    /* Increment the index. */
-    i++;
-  }
+	return (w);
+}
+/**
+ * **strtow - splits a string into words
+ * @str: string to split
+ *
+ * Return: pointer to an array of strings (Success)
+ * or NULL (Error)
+ */
+char **strtow(char *str)
+{
+	char **matrix, *tmp;
+	int i, k = 0, len = 0, words, c = 0, start, end;
 
-  /* Add the last word to the array. */
-  words[j] = &str[i - 1];
+	while (*(str + len))
+		len++;
+	words = count_word(str);
+	if (words == 0)
+		return (NULL);
 
-  /* Return the array of words. */
-  return words;
+	matrix = (char **) malloc(sizeof(char *) * (words + 1));
+	if (matrix == NULL)
+		return (NULL);
+
+	for (i = 0; i <= len; i++)
+	{
+		if (str[i] == ' ' || str[i] == '\0')
+		{
+			if (c)
+			{
+				end = i;
+				tmp = (char *) malloc(sizeof(char) * (c + 1));
+				if (tmp == NULL)
+					return (NULL);
+				while (start < end)
+					*tmp++ = str[start++];
+				*tmp = '\0';
+				matrix[k] = tmp - c;
+				k++;
+				c = 0;
+			}
+		}
+		else if (c++ == 0)
+			start = i;
+	}
+
+	matrix[k] = NULL;
+
+	return (matrix);
 }
 
