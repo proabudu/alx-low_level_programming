@@ -1,45 +1,32 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 /**
- * string_nconcat - concatenates two strings
- * @s1: first string
- * @s2: second string
- * @n: number of bytes of s2 to concatenate
+ * _calloc - allocates memory for an array.
+ * @nmemb: number of elements in the array.
+ * @size: size of each element in bytes.
  *
- * Return: pointer to the newly allocated space in memory containing
- * the concatenated string, or NULL if the function fails
+ * Return: pointer to the allocated memory or NULL on failure.
  */
-char *string_nconcat(char *s1, char *s2, unsigned int n)
+void *_calloc(unsigned int nmemb, unsigned int size)
 {
-    char *result;
-    unsigned int i, j, len1 = 0, len2 = 0;
+	void *mem_ptr;
+	unsigned int i;
+	char *mem_set;
 
-    if (s1 == NULL)
-        s1 = "";
-    if (s2 == NULL)
-        s2 = "";
+	if (nmemb == 0 || size == 0)
+		return (NULL);
 
-    while (s1[len1])
-        len1++;
-    while (s2[len2])
-        len2++;
+	mem_ptr = malloc(nmemb * size);
 
-    if (n >= len2)
-        n = len2;
+	if (mem_ptr == NULL)
+		return (NULL);
 
-    result = malloc(sizeof(char) * (len1 + n + 1));
-    if (result == NULL)
-        return (NULL);
+	mem_set = mem_ptr;
 
-    for (i = 0; i < len1; i++)
-        result[i] = s1[i];
-    for (j = 0; j < n; j++, i++)
-        result[i] = s2[j];
-    result[i] = '\0';
+	for (i = 0; i < nmemb * size; i++)
+		mem_set[i] = 0;
 
-    return (result);
+	return (mem_ptr);
 }
 
