@@ -7,25 +7,27 @@
  *
  * @array: input array
  * @size: size of the array
- * @value: value to search for
- * Return: The index of the first occurrence of value, or -1 if not found
+ * @value: value to search in
+ * Return: Always EXIT_SUCCESS
  */
 
 
 int linear_search(int *array, size_t size, int value)
 {
-    size_t i; // Use a more descriptive variable name
+    size_t x;
 
-    if (array == NULL) {
-        return -1; // Indicate error condition
+    if (array == NULL)
+    {
+        return (-1);
     }
 
-    for (i = 0; i < size; i++) {
-        // No need for printing inside the search function (unless for debugging)
-        if (array[i] == value) {
-            return i; // Return index if found
+    for (x = 0; x < size; x++)
+    {
+        printf("Value checked array[%li] = [%i]\n", x, array[x]);
+        if (array[x] == value)
+        {
+            return (x);
         }
     }
-
-    return -1; // Not found
+    return (-1);
 }
